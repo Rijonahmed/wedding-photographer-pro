@@ -76,8 +76,9 @@ margin-bottom: 12px;
     width: 2rem;
     height: 2rem;
     padding: 5px;
-    background-color: black;
-    color: white;
+    cursor: pointer;
+    background-color: rgb(10, 9, 9);
+    color: rgb(250, 7, 7);
 }
 @media (max-width: 990px) {
     .ImageGallery{

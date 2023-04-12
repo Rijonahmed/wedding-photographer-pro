@@ -1,14 +1,15 @@
 import React from 'react';
 import Banner from '../Banner/Banner';
 import ImageGallery from '../ImageGallery/ImageGallery';
+import BgVideo from '../BgVideo/BgVideo';
 
 
 const Home = () => {
     return (
         <div>
           
-          
-            <Banner></Banner>
+          <BgVideo></BgVideo>
+            
             <ImageGallery></ImageGallery>
             <div className="hero min-h-screen bg-base-200">
   <div className="hero-content flex-col lg:flex-row">

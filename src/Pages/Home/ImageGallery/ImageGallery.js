@@ -14,7 +14,7 @@ const ImageGallery = () => {
 
   return (
     <>
-    <h2 className="text-3xl font-bold text-center my-8">Wedding Photo Gallery</h2>
+    <h2 className="lg:text-3xl font-bold text-center my-8">Wedding Photo Gallery</h2>
       <div className={modal ? " open" : "imgmodal"}>
         <img src={viewImg} alt="images" />
         <FaTimes onClick={() => setModal(false)} />

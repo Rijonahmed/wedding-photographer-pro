@@ -41,7 +41,9 @@ const Banner = () => {
             "url(https://magikkairosevents.files.wordpress.com/2015/11/featured.jpg)",
         }}
         data-swiper-parallax="-23%"
-      ></div>
+      >
+       
+      </div>
 
 
       
