@@ -1,0 +1,43 @@
+.swiper-slide {
+
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  
+    margin: auto;
+  }
+  .swiper {
+    padding: 0px 10px;
+    width: 100%;
+    height: 60vh;
+  
+  }
+  
+  .parallax-bg {
+  
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 100%;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .swiper-slide .title {
+    font-size: 41px;
+    font-weight: 300;
+    text-align: left;
+  }
+  
+  .swiper-slide .subtitle {
+    font-size: 21px;
+    text-align: left;
+  }
+  
+  .swiper-slide .text {
+    font-size: 14px;
+    max-width: 400px;
+    line-height: 1.3;
+  }
