@@ -8,6 +8,7 @@ import SignUp from "../../Authentication/SignUp/SignUp"
 import PrivateRoute from "../PrivateRoute/PrivateRoute"
 import DashboardLayout from "../../Layout/DashboardLayout"
 import MyOrder from "../../Pages/Dashboard/MyOrder"
+import Services from "../../Pages/Home/Services/Services"
 
 const router = createBrowserRouter(
     [
@@ -33,6 +34,10 @@ const router = createBrowserRouter(
           {
             path: '/gallery',
             element: <ImageGallery></ImageGallery>
+          },
+          {
+            path: '/services',
+            element: <Services></Services>
           },
           
         ]
