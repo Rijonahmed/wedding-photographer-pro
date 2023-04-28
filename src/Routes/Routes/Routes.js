@@ -9,6 +9,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute"
 import DashboardLayout from "../../Layout/DashboardLayout"
 import MyOrder from "../../Pages/Dashboard/MyOrder"
 import Services from "../../Pages/Home/Services/Services"
+import CheckoutPage from "../../Pages/Dashboard/CheckoutPage"
 
 const router = createBrowserRouter(
     [
@@ -39,6 +40,11 @@ const router = createBrowserRouter(
             path: '/services',
             element: <Services></Services>
           },
+          {
+            path: '/checkout/:checkoutId',
+            element: <PrivateRoute><CheckoutPage></CheckoutPage></PrivateRoute>,
+         
+          },
           
         ]
       },
@@ -51,6 +57,7 @@ const router = createBrowserRouter(
             path: '/dashboard',
             element: <MyOrder></MyOrder>
           },
+       
          
          
           

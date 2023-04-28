@@ -1,9 +1,20 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
 
-const Service = ({ service }) => {
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+const CheckoutPage = () => {
+  const { checkoutId } = useParams();
+
+  const [singleService, setSingleService] = useState({});
+  const url = `http://localhost:5000/services/${checkoutId}`;
+
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setSingleService(data));
+  }, []);
+
   const {
-    _id,
     name,
     price,
     images,
@@ -14,15 +25,14 @@ const Service = ({ service }) => {
     text5,
     text6,
     text7,
-  } = service;
-  const navigate = useNavigate();
-  const handleCheckout = (id) => {
-    navigate("/checkout/" + id);
-  };
+  } = singleService;
+
   return (
     <div>
+    
+
       <div className="card w-96 bg-base-100 shadow-xl lg:flex">
-        <figure>
+        <figure className="w-52">
           <img src={images} alt="wedding img" />
         </figure>
         <div className="card-body">
@@ -40,12 +50,7 @@ const Service = ({ service }) => {
           <p>{text7}</p>
 
           <div className="card-actions justify-end">
-            <button
-              onClick={() => handleCheckout(_id)}
-              className="btn btn-outline btn-success"
-            >
-              Checkout
-            </button>
+            <button className="btn btn-outline btn-success">Checkout</button>
           </div>
         </div>
       </div>
@@ -53,4 +58,4 @@ const Service = ({ service }) => {
   );
 };
 
-export default Service;
+export default CheckoutPage;

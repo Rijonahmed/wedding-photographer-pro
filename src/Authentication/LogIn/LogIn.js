@@ -6,11 +6,24 @@ import Social from '../Social/Social';
 
 
 const LogIn = () => {
+  const { signUp,user } = useContext(AuthContext)
   const location = useLocation();
-//   const navigate = useNavigate();
-//   const from = location.state?.from.pathname || '/';
+  const navigate = useNavigate();
+  // const from = location.state?.from.pathname || '/';
+  // if (user) {
+  //   navigate(form, { replace: true });
 
-  const { signUp } = useContext(AuthContext)
+  // }
+ 
+
+  let form = location.state?.from?.pathname || "/";
+
+  if (user) {
+    navigate(form, { replace: true });
+  }
+
+
+  
   const { register, formState: { errors }, handleSubmit } = useForm();
   const [logInError, setLogInError] = useState('');
   const [loginUserEmail, setLoginUserEmail] = useState('');

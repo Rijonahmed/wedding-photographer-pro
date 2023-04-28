@@ -1,9 +1,19 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
-import React from 'react';
+import React, { useContext } from 'react';
 import app from '../../Firebase/Firebase.init';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider';
 
 const Social = () => {
+    const { user } = useContext(AuthContext)
+    const navigate = useNavigate();
+  const location = useLocation();
     const auth = getAuth(app)
+    let form = location.state?.from?.pathname || "/";
+
+  if (user) {
+    navigate(form, { replace: true });
+  }
     const provider = new GoogleAuthProvider();
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, provider)
