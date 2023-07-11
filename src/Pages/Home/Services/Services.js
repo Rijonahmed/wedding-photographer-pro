@@ -14,6 +14,7 @@ const Services = () => {
           return data
         }
       })
+      console.log(Services);
       if (isLoading) {
         return <Loading></Loading>
       }
