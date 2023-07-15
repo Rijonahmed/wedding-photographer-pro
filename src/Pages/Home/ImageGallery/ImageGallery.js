@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./ImageGallery.css";
-import { ImageData } from "../../../FakeData/FakeData";
 import { FaTimes } from "react-icons/fa";
+import Loading from '../../../Shared/Loading';
+import { useQuery } from "@tanstack/react-query";
 
 const ImageGallery = () => {
   const [modal, setModal] = useState(false);
@@ -11,6 +12,18 @@ const ImageGallery = () => {
     setViewImg(img);
     setModal(true);
   };
+  const { data: Photos = [],isLoading } = useQuery({
+    queryKey: ['photo'],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/photos`)
+      const data = await res.json()
+      return data
+    }
+  })
+ 
+  if (isLoading) {
+    return <Loading></Loading>
+  }
 
   return (
     <>
@@ -20,7 +33,7 @@ const ImageGallery = () => {
         <FaTimes onClick={() => setModal(false)} />
       </div>
       <div className="ImageGallery">
-        {ImageData.map((item, i) => {
+        {Photos.map((item, i) => {
           return (
             <div className="pic" key={i} onClick={() => getImg(item.img)}>
               <img src={item.img} className="w-fit" alt="images" />

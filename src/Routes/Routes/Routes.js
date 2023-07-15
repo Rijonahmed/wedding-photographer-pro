@@ -10,6 +10,7 @@ import DashboardLayout from "../../Layout/DashboardLayout"
 import MyOrder from "../../Pages/Dashboard/MyOrder"
 import Services from "../../Pages/Home/Services/Services"
 import CheckoutPage from "../../Pages/Dashboard/CheckoutPage"
+import AddPhoto from "../../Pages/Dashboard/AddPhoto"
 
 const router = createBrowserRouter(
     [
@@ -56,6 +57,10 @@ const router = createBrowserRouter(
           {
             path: '/dashboard',
             element: <MyOrder></MyOrder>
+          },
+          {
+            path: '/dashboard/addphoto',
+            element: <AddPhoto></AddPhoto>
           },
        
          

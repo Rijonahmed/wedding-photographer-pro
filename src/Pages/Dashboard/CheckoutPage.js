@@ -4,7 +4,7 @@ import { AuthContext } from "../../Contexts/AuthProvider";
 
 const CheckoutPage = () => {
   const { checkoutId } = useParams();
-  const { user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   console.log(user);
 
   const [singleService, setSingleService] = useState({});
@@ -31,10 +31,10 @@ const CheckoutPage = () => {
 
   return (
     <div>
-      <section className="grid grid-cols-3 gap-4 ">
+      <section className="grid lg:grid-cols-3 gap-4 ">
         <div>
           <div className="card w-96 bg-base-100 shadow-xl lg:flex">
-            <figure className="w-52">
+            <figure className="w-52 m-auto">
               <img src={images} alt="wedding img" />
             </figure>
             <div className="card-body">
@@ -54,8 +54,8 @@ const CheckoutPage = () => {
           </div>
         </div>
         <div className="col-span-2">
-        <form className="">
-            <div className=" w-full">
+          <form className="">
+            <div className="sm:form-control sm:w-auto lg:w-full ">
               <label className="label">
                 <span className="label-text">Your Ordet Product name </span>
               </label>
@@ -67,54 +67,44 @@ const CheckoutPage = () => {
               />
             </div>
 
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text">Your Email Address</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                disabled
-                value={user.email}
-                className="input input-bordered input-accent w-full max-w-xs"
-              />
-            </div>
+            <div className="lg:flex lg:justify-between lg:gap-4">
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Your Email Address</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  disabled
+                  value={user.email}
+                  className="input input-bordered input-accent w-full max-w-xs"
+                />
+              </div>
 
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text">Your Name</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                disabled
-                value={user.displayName}
-                className="input input-bordered input-accent w-full max-w-xs"
-              />
-            </div>
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Your Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  disabled
+                  value={user.displayName}
+                  className="input input-bordered input-accent w-full max-w-xs"
+                />
+              </div>
 
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text">Your total booking Price</span>
-              </label>
-              <input
-                type="number"
-                disabled
-                value={price}
-                className="input input-bordered input-accent w-full max-w-xs"
-              />
-            </div>
-
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text">Your product Quantity</span>
-              </label>
-              <input
-                name="quantity"
-                type="number"
-                className="input input-bordered input-accent w-full max-w-xs"
-                required
-              />
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Your total booking Price</span>
+                </label>
+                <input
+                  type="number"
+                  disabled
+                  value={price}
+                  className="input input-bordered input-accent w-full max-w-xs"
+                />
+              </div>
             </div>
 
             <div className="form-control w-full max-w-xs">
@@ -138,7 +128,7 @@ const CheckoutPage = () => {
               </label>
               <textarea
                 name="address"
-                className="textarea textarea-bordered h-18"
+                className="textarea textarea-accent h-18"
                 placeholder="Address"
                 required
               ></textarea>
@@ -147,11 +137,10 @@ const CheckoutPage = () => {
             <input
               type="submit"
               value="Submit"
-              className="btn btn-secondary w-full max-w-xs"
+              className="btn btn-secondary w-full max-w-xs mt-10"
             />
           </form>
         </div>
-       
       </section>
     </div>
   );

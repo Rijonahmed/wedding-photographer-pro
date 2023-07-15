@@ -20,6 +20,7 @@ const DashboardLayout = () => {
           <ul className="menu p-4 w-80 text-base-content">
 
             <li><Link to='/dashboard'>chackout</Link></li>
+            <li><Link to='/dashboard/addphoto'>Add Photo</Link></li>
            
 
           </ul>
