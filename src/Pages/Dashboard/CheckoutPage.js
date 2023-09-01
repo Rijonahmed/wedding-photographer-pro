@@ -1,11 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
+import { DayPicker } from "react-day-picker";
+import { format } from "date-fns";
+import 'react-day-picker/dist/style.css';
+import { toast } from "react-hot-toast";
 
 const CheckoutPage = () => {
   const { checkoutId } = useParams();
   const { user } = useContext(AuthContext);
-  console.log(user);
+  const navigate = useNavigate()
+  
 
   const [singleService, setSingleService] = useState({});
   const url = `http://localhost:5000/services/${checkoutId}`;
@@ -14,7 +19,7 @@ const CheckoutPage = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setSingleService(data));
-  }, []);
+  }, [checkoutId]);
 
   const {
     name,
@@ -28,6 +33,61 @@ const CheckoutPage = () => {
     text6,
     text7,
   } = singleService;
+  const [selected, setSelected] = useState(new Date());
+
+  const date = format(selected, 'PP')
+  console.log(date);
+
+
+
+
+  const handleBooking = event => {
+    event.preventDefault();
+    const form = event.target;
+    
+    const email = form.email.value;
+    const phone = form.phone.value;
+    const address = form.address.value;
+    
+
+
+    const booking = {
+      bookingDate: date,
+      address,
+      email,
+      phone,
+      productName: name,
+      price: price
+
+    }
+    fetch('http://localhost:5000/bookings', {
+      method: 'post',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(booking)
+
+    })
+
+
+      .then(res => res.json())
+      .then(data => {
+
+        if (data.acknowledged) {
+          toast.success('Photo Grapher booking success')
+          navigate('/services')
+        }
+        else {
+          toast.error(data.message);
+
+        }
+
+      });
+
+    
+  }
+
+
 
   return (
     <div>
@@ -54,7 +114,8 @@ const CheckoutPage = () => {
           </div>
         </div>
         <div className="col-span-2">
-          <form className="">
+    
+          <form onSubmit={handleBooking} className="">
             <div className="sm:form-control sm:w-auto lg:w-full ">
               <label className="label">
                 <span className="label-text">Your Ordet Product name </span>
@@ -63,7 +124,7 @@ const CheckoutPage = () => {
                 type="text"
                 disabled
                 value={name}
-                className="input input-bordered input-accent w-full"
+                className="input input-bordered input-accent "
               />
             </div>
 
@@ -99,7 +160,7 @@ const CheckoutPage = () => {
                   <span className="label-text">Your total booking Price</span>
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   disabled
                   value={price}
                   className="input input-bordered input-accent w-full max-w-xs"
@@ -107,7 +168,9 @@ const CheckoutPage = () => {
               </div>
             </div>
 
-            <div className="form-control w-full max-w-xs">
+            <div className="lg:flex lg:justify-between lg:gap-4">
+              <div>
+              <div className="form-control w-full max-w-xs">
               <label className="label">
                 <span className="label-text">
                   please type your Phone number
@@ -120,9 +183,8 @@ const CheckoutPage = () => {
                 className="input input-bordered input-accent w-full max-w-xs"
                 required
               />
-            </div>
-
-            <div className="form-control w-full max-w-xs">
+              </div>
+              <div className="form-control w-full max-w-xs">
               <label className="label">
                 <span className="label-text">please type your Address</span>
               </label>
@@ -134,12 +196,27 @@ const CheckoutPage = () => {
               ></textarea>
             </div>
 
+          
+
+          
+
+              </div>
+              <div>
+              <DayPicker
+                mode="single"
+                selected={selected}
+                onSelect={setSelected}
+      
+                />
+              </div>
+            </div>
             <input
               type="submit"
               value="Submit"
               className="btn btn-secondary w-full max-w-xs mt-10"
             />
           </form>
+
         </div>
       </section>
     </div>
